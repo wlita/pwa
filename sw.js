@@ -1,4 +1,4 @@
-var cacheName = 'helloPWA'; //缓存名称
+var cacheName = 'helloPWA123'; //缓存名称
 
 // self.addEventListener('install', event => { //进入Service Worker安装事件
 //     event.waitUntil(
