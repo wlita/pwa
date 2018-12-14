@@ -5,6 +5,9 @@
 		<img src="img/1.png" style="width: 50px; height: 50px" />
 
 		hello world pwa~~~
+	
+		<div id='xxx'> click one </div>
+
 	</body>
 
 	<script>
@@ -23,5 +26,9 @@
             
             });
         }
+
+        document.getElementById('xxx').addEventListener('click', function() {
+        	document.getElementById('xxx').append('<img src="img/1.png" />')
+        })
 	</script>
 </html>
