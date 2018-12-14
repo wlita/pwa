@@ -4,7 +4,9 @@ self.addEventListener('install', event => { //进入Service Worker安装事件
     event.waitUntil(
         caches.open(cacheName)  //使用指定缓存名打开缓存
         .then(cache => cache.addAll([
-            '/pwa/img/1.png' //把资源添加到缓存中
+            '/pwa/img/1.png', //把资源添加到缓存中
+            '/pwa/js/index.js',
+            '/pwa/css/styles.css'
             ]))
         );
 });
