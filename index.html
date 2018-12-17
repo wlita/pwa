@@ -25,7 +25,7 @@
     //如果浏览器支持 Service Worker API，在页面 onload 的时候注册位于 /sw.js 的 Service Worker。
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/pwa/sw.js', {scope: '/'})
+            navigator.serviceWorker.register('/pwa/sw.js', {scope: '/pwa/'})
                 .then(function (registration) {
 
                     // 注册成功
