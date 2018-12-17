@@ -1,35 +1,36 @@
-<html>
-	<head></head>
-	<body>
 
-		<img src="img/1.png" style="width: 50px; height: 50px" />
+<head>
+  <title>Minimal PWA</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="icon" href="/img/e.png" type="image/png" />
+</head>
 
-		hello world pwa~~~123123
-	
-		<div id='xxx'> click one </div>
+<body>
+  <div class="revision">Revision 8</div>
+  <img src="pwa-fonts.png">
+  <div class="main-text">
+    Minimal PWA, open Console for more!
+  </div>
+  <div class="network-message">
+    Network:
+    <span id="network-status" class="">Good</span>
+  </div>
+  <script type="text/javascript">
+    if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('sw.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
 
-	</body>
+    fetch('./data.json')
 
-	<script>
-		if ('serviceWorker' in navigator) {
-		    window.addEventListener('load', function () {
-		        navigator.serviceWorker.register('/sw.js')
-		            .then(function (registration) {
-
-		                // 注册成功
-		                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		            })
-		            .catch(function (err) {
-
-		                // 注册失败:(
-		                console.log('ServiceWorker registration failed: ', err);
-		            });
-		    });
-		}
-
-        document.getElementById('xxx').addEventListener('click', function() {
-        	document.getElementById('xxx').innerHTML = 
-        	'<img src="img/3.png" style="width: 50px; height: 50px" />'
-        })
-	</script>
-</html>
+    var statusEl = document.querySelector('#network-status')
+    if (!navigator.onLine) {
+      statusEl.classList = ['is-offline']
+      statusEl.innerText = 'Offline'
+    }
+  </script>
+</body>
