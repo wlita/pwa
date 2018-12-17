@@ -11,13 +11,37 @@ self.addEventListener('install', event => {
     // event.waitUtil 用于在安装成功之前执行一些预装逻辑
     // 但是建议只做一些轻量级和非常重要资源的缓存，减少安装失败的概率
     // 安装成功后 ServiceWorker 状态会从 installing 变为 installed
+    // event.waitUntil(
+    //     // 使用 cache API 打开指定的 cache 文件
+    //     caches.open(CACHE_NAME).then(cache => {
+    //         console.log(cache);
+    //         // 添加要缓存的资源列表
+    //         return cache.addAll(urlsToCache);
+    //     })
+    // );
+
+    event.waitUntil(self.skipWaiting());
+});
+
+
+self.addEventListener('activate', function (event) {
     event.waitUntil(
-        // 使用 cache API 打开指定的 cache 文件
-        caches.open(CACHE_NAME).then(cache => {
-            console.log(cache);
-            // 添加要缓存的资源列表
-            return cache.addAll(urlsToCache);
-        })
+        Promise.all([
+
+            // 更新客户端
+            self.clients.claim(),
+
+            // 清理旧版本
+            caches.keys().then(function (cacheList) {
+                return Promise.all(
+                    cacheList.map(function (cacheName) {
+                        if (cacheName !== CACHE_NAME) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        ])
     );
 });
 
