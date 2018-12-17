@@ -52,7 +52,7 @@ self.addEventListener('fetch', function (event) {
             // 来来来，代理可以搞一些代理的事情
 
             // 如果 Service Worker 有自己的返回，就直接返回，减少一次 http 请求
-            if (response && response.url != 'https://wlita.github.io/pwa/') {
+            if (response) {
                 return response;
             }
 
@@ -69,6 +69,11 @@ self.addEventListener('fetch', function (event) {
 
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
+                // index.html 不缓存
+                if (response.url != 'https://wlita.github.io/pwa/') {
+                    return httpRes
+                }
+                
                 caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
