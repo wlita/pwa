@@ -1,5 +1,5 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
-const CACHE_NAME = "lzwme_cache_v1.1.5";
+const CACHE_NAME = "lzwme_cache_v1.1.8";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
     '/pwa/img/1.png',
@@ -73,7 +73,7 @@ self.addEventListener('fetch', function (event) {
                 if (response.url != 'https://wlita.github.io/pwa/') {
                     return httpRes
                 }
-                
+
                 caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
