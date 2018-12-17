@@ -2,8 +2,8 @@
 const CACHE_NAME = "lzwme_cache_v1.1.9";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
-    '/img/1.png',
-    '/img/3.png'
+    '/pwa/img/1.png',
+    '/pwa/img/3.png'
 ];
 
 // self 为当前 scope 内的上下文
@@ -73,9 +73,9 @@ self.addEventListener('fetch', function (event) {
                 caches.open(CACHE_NAME).then(function (cache) {
 
                     // 页面不缓存
-                    if (responseClone && responseClone.url === 'http://127.0.0.1:8080/') {
-                        return
-                    }
+                    // if (responseClone && responseClone.url === 'http://127.0.0.1:8080/') {
+                    //     return
+                    // }
 
                     cache.put(event.request, responseClone);
                 });
