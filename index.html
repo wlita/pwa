@@ -41,7 +41,7 @@
 
     document.getElementById('xxx').addEventListener('click', function() {
         fetch('data.json').then(res => {
-          document.getElementById('xxx').innerHTML = res
+          document.getElementById('xxx').innerHTML = JSON.stringify(res)
         })
     })
 
