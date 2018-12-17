@@ -6,7 +6,31 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="icon" href="img/e.png" type="image/png" />
 </head>
+<style type="text/css">
+  @media all and (display-mode: fullscreen) {
+      body {
+          margin: 0;
+      }
+  }
 
+  @media all and (display-mode: standalone) {
+      body {
+          margin: 1px;
+      }
+  }
+
+  @media all and (display-mode: minimal-ui) {
+      body {
+          margin: 2px;
+      }
+  }
+
+  @media all and (display-mode: browser) {
+      body {
+          margin: 3px;
+      }
+  }
+</style>
 <body>
   <img src="img/pwa-fonts.png">
   <div class="main-text">
