@@ -40,7 +40,9 @@
     }
 
     document.getElementById('xxx').addEventListener('click', function() {
-      document.getElementById('xxx').innerHTML = '<img src="img/e.png" />'
+        fetch('data.json').then(res => {
+          document.getElementById('xxx').innerHTML = res
+        })
     })
 
   </script>
