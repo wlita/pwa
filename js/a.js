@@ -1,1 +1,1 @@
-alert('aaaa+++')
+document.getElementById('xxx').innerHTML = 'test...'
