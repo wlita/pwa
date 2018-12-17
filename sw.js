@@ -1,9 +1,9 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
-const CACHE_NAME = "lzwme_cache_v1.1.8";
+const CACHE_NAME = "lzwme_cache_v1.6";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
-    '/pwa/img/1.png',
-    '/pwa/img/3.png'
+    '/img/1.png',
+    '/img/3.png'
 ];
 
 // self 为当前 scope 内的上下文
@@ -69,10 +69,6 @@ self.addEventListener('fetch', function (event) {
 
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
-                // index.html 不缓存
-                if (response.url != 'https://wlita.github.io/pwa/') {
-                    return httpRes
-                }
 
                 caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
