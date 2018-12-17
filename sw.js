@@ -1,19 +1,28 @@
-// 监听 service worker 的 install 事件
-this.addEventListener('install', function (event) {
-    // 如果监听到了 service worker 已经安装成功的话，就会调用 event.waitUntil 回调函数
+// 用于标注创建的缓存，也可以根据它来建立版本规范
+const CACHE_NAME = "lzwme_cache_v1.0.0";
+// 列举要默认缓存的静态资源，一般用于离线使用
+const urlsToCache = [
+    '/img/1.png',
+    '/img/3.png'
+];
+
+// self 为当前 scope 内的上下文
+self.addEventListener('install', event => {
+    // event.waitUtil 用于在安装成功之前执行一些预装逻辑
+    // 但是建议只做一些轻量级和非常重要资源的缓存，减少安装失败的概率
+    // 安装成功后 ServiceWorker 状态会从 installing 变为 installed
     event.waitUntil(
-        // 安装成功后操作 CacheStorage 缓存，使用之前需要先通过 caches.open() 打开对应缓存空间。
-        caches.open('my-test-cache-v1').then(function (cache) {
-            // 通过 cache 缓存对象的 addAll 方法添加 precache 缓存
-            return cache.addAll([
-                '/pwa/img/1.png',
-                '/pwa/img/3.png'
-            ]);
+        // 使用 cache API 打开指定的 cache 文件
+        caches.open(CACHE_NAME).then(cache => {
+            console.log(cache);
+            // 添加要缓存的资源列表
+            return cache.addAll(urlsToCache);
         })
     );
 });
 
-this.addEventListener('fetch', function (event) {
+
+self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (response) {
             // 来来来，代理可以搞一些代理的事情
@@ -36,7 +45,7 @@ this.addEventListener('fetch', function (event) {
 
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
-                caches.open('my-test-cache-v1').then(function (cache) {
+                caches.open(CACHE_NAME).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
 

@@ -1,36 +1,39 @@
 
 <head>
-  <title>Minimal PWA</title>
+  <title>PWA TEST</title>
   <meta name="viewport" content="width=device-width, user-scalable=no" />
-  <link rel="manifest" href="manifest.json" />
+  <!-- <link rel="manifest" href="manifest.json" /> -->
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="icon" href="img/e.png" type="image/png" />
 </head>
 
 <body>
-  <div class="revision">Revision 8</div>
   <img src="img/pwa-fonts.png">
   <div class="main-text">
-    Minimal PWA, open Console for more!
+    hello pwa...
   </div>
-  <div class="network-message">
-    Network:
-    <span id="network-status" class="">Good</span>
+  <div id="xxx">
+    click...
   </div>
+
   <script type="text/javascript">
-    if (navigator.serviceWorker != null) {
-      navigator.serviceWorker.register('sw.js')
-      .then(function(registration) {
-        console.log('Registered events at scope: ', registration.scope);
-      });
+    //如果浏览器支持 Service Worker API，在页面 onload 的时候注册位于 /sw.js 的 Service Worker。
+    if ('serviceWorker' in navigator) {
+        //启动一个线程很耗时，建议放到onload事件中 
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function (registration) { // 注册成功
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function (err) {  // 注册失败
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
     }
 
-    fetch('./data.json')
+    document.getElementById('xxx').addEventListener('click', function() {
+      document.getElementById('xxx').innerHTML = '<img src="img/e.png" />'
+    })
 
-    var statusEl = document.querySelector('#network-status')
-    if (!navigator.onLine) {
-      statusEl.classList = ['is-offline']
-      statusEl.innerText = 'Offline'
-    }
   </script>
 </body>
