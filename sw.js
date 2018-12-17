@@ -1,9 +1,10 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
 const CACHE_NAME = "v1.1.2";
+const url = '/pwa/'
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
-    '/pwa/img/1.png',
-    '/pwa/img/3.png'
+    url + 'img/1.png',
+    url + 'img/3.png'
 ];
 
 // self 为当前 scope 内的上下文
