@@ -52,7 +52,7 @@ self.addEventListener('fetch', function (event) {
             // 来来来，代理可以搞一些代理的事情
 
             // 如果 Service Worker 有自己的返回，就直接返回，减少一次 http 请求
-            if (response) {
+            if (response && response.url != 'https://wlita.github.io/pwa/') {
                 return response;
             }
 
