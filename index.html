@@ -2,7 +2,7 @@
 <head>
   <title>PWA TEST</title>
   <meta name="viewport" content="width=device-width, user-scalable=no" />
-  <!-- <link rel="manifest" href="manifest.json" /> -->
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="icon" href="img/e.png" type="image/png" />
 </head>
@@ -17,47 +17,27 @@
     click...
   </div>
 
-  <script src="js/index.js" > </script>
+  <script src="js/index.js"></script>
+  <script src="js/a.js"></script>
+
   <script type="text/javascript">
 
-    var version = '1.0.7';
-
     //如果浏览器支持 Service Worker API，在页面 onload 的时候注册位于 /sw.js 的 Service Worker。
-    // if ('serviceWorker' in navigator) {
-    //     //启动一个线程很耗时，建议放到onload事件中 
-    //     window.addEventListener('load', function () {
-    //         navigator.serviceWorker.register('sw.js')
-    //             .then(function (registration) { // 注册成功
-    //                 if (localStorage.getItem('sw_version') !== version) {
-    //                   reg.update().then(function () {
-    //                       localStorage.setItem('sw_version', version)
-    //                   });
-    //                 }
-    //                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    //             })
-    //             .catch(function (err) {  // 注册失败
-    //                 console.log('ServiceWorker registration failed: ', err);
-    //             });
-    //     });
-    // }
-
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js')
-              .then(function (registration) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js', {scope: '/'})
+                .then(function (registration) {
 
-                  // 注册成功
-                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
-              })
-              .catch(function (err) {
+                    // 注册成功
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(function (err) {
 
-                  // 注册失败:(
-                  console.log('ServiceWorker registration failed: ', err);
-              });
-      });
-  }
-
-    fetch('data.json')
+                    // 注册失败:(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
 
     document.getElementById('xxx').addEventListener('click', function() {
       document.getElementById('xxx').innerHTML = '<img src="img/e.png" />'

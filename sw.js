@@ -1,5 +1,5 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
-const CACHE_NAME = "lzwme_cache_v1.6";
+const CACHE_NAME = "lzwme_cache_v1.1.8";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
     '/img/1.png',
@@ -20,30 +20,30 @@ self.addEventListener('install', event => {
         })
     );
 
-    // event.waitUntil(self.skipWaiting());
+    event.waitUntil(self.skipWaiting());
 });
 
 
-// self.addEventListener('activate', function (event) {
-//     event.waitUntil(
-//         Promise.all([
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        Promise.all([
 
-//             // 更新客户端
-//             self.clients.claim(),
+            // 更新客户端
+            self.clients.claim(),
 
-//             // 清理旧版本
-//             caches.keys().then(function (cacheList) {
-//                 return Promise.all(
-//                     cacheList.map(function (cacheName) {
-//                         if (cacheName !== CACHE_NAME) {
-//                             return caches.delete(cacheName);
-//                         }
-//                     })
-//                 );
-//             })
-//         ])
-//     );
-// });
+            // 清理旧版本
+            caches.keys().then(function (cacheList) {
+                return Promise.all(
+                    cacheList.map(function (cacheName) {
+                        if (cacheName !== CACHE_NAME) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        ])
+    );
+});
 
 
 self.addEventListener('fetch', function (event) {
@@ -71,6 +71,12 @@ self.addEventListener('fetch', function (event) {
                 var responseClone = httpRes.clone();
 
                 caches.open(CACHE_NAME).then(function (cache) {
+
+                    // 页面不缓存
+                    if (responseClone && responseClone.url === 'http://127.0.0.1:8080/') {
+                        return
+                    }
+
                     cache.put(event.request, responseClone);
                 });
 
