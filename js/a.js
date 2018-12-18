@@ -1,1 +1,1 @@
-document.getElementById('xxx').innerHTML = 'test click...123'
+document.getElementById('xxx').innerHTML = 'test click...'
