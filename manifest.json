@@ -3,11 +3,13 @@
     "name": "这是一个全部的名称",
     "icon": [
         {
-            "src": "./img/2.png",
+            "src": "inco.png",
             "type": "image/png",
             "sizes": "48x48"
         }
     ],
     "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
     "start_url": "index.html"
 }
