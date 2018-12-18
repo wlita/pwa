@@ -3,10 +3,12 @@
     "name": "这是一个完整名称",
     "icon": [
         {
-            "src": "icon.png",
+            "src": "/pwa/icon.png",
             "type": "image/png",
             "sizes": "48x48"
         }
     ],
+    "display": "standalone",
+    "background_color": "#2196f3",
     "start_url": "index.html"
 }
