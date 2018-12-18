@@ -1,13 +1,14 @@
 {
-    "short_name": "hello pwa...",
-    "name": "这是一个全部的名称",
+    "short_name": "短名称",
+    "name": "这是一个完整名称",
     "icon": [
         {
-            "src": "./img/2.png",
+            "src": "/pwa/icon.png",
             "type": "image/png",
             "sizes": "48x48"
         }
     ],
     "display": "standalone",
+    "background_color": "#2196f3",
     "start_url": "index.html"
 }
