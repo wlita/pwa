@@ -17,7 +17,7 @@
 3. 打开Devtools（快捷键：Command + Option + i）
 ```
 
-![image](./1.png)
+![image](./img/1.png)
 
 ```
 4. 模拟移动设备的CPU
@@ -30,20 +30,20 @@
     3）点击 Capture Settings（⚙️）按钮，点击CPU选项，选择4x slowdown，于是DevTools就开始模拟4倍低速CPU
 ```
 
-![image](./2.png)
+![image](./img/2.png)
 
 ### 分析报告
 ```
 1. 点击ReCord, 开始录制⏺️性能指标。
 ```
 
-![image](./3.png)
+![image](./img/3.png)
 
 ```
 2. 等待几分钟，点击stop按钮，DevTools定制录制，显示性能报告。
 ```
 
-![image](./4.png)
+![image](./img/4.png)
 
 ```
 3. performance面板功能分析
@@ -89,8 +89,8 @@
         (红线：load)
 
 ```
-![image](./5.png)
-![image](./6.png)
+![image](./img/5.png)
+![image](./img/6.png)
 
 ### 了解FPS
 ```
@@ -114,23 +114,23 @@
 ```
 1. Summary面板，会发现CPU花费了大量的时间在rendering上。因此目标就是减少rendering的时间。
 ```
-![image](./8.png)
+![image](./img/8.png)
 ```
 2. 展开Main图表，Devtools展示了主线程运行状况。X轴代表着时间。每个长条代表着一个event。长条越长就代表这个event花费的时间越长。Y轴代表了调用栈（call stack）。在栈里，上面的event调用了下面的event。
 ```
-![image](./9.jpg)
+![image](./img/9.jpg)
 ```
 3. 在事件长条的右上角出，如果出现了红色小三角，说明这个事件是存在问题的，需要特别注意。
 ```
-![image](./12.png)
+![image](./img/12.png)
 ```
 4. 点击这个带有红色小三角的的事件。在Summary面板会看到详细信息。注意reveal这个链接，双击它会让高亮触发这个事件的event。如果点击了app.js:94这个链接，就会跳转到对应的代码处。
 ```
-![image](./13.png)
+![image](./img/13.png)
 ```
 5. 在summary面板里点击app.js:70链接，Devtools会跳转到需要优化的代码处
 ```
-![image](./14.png)
+![image](./img/14.png)
 
 
 ### 小功能-显示实时FPS面板
@@ -140,7 +140,7 @@
 2. 输入Rendering，点选Show Rendering
 3. 在Rednering面板中，激活FPS Meter。 FPS实时面板就会出现在页面的右上方。
 ```
-![image](./7.png)
+![image](./img/7.png)
 
 
 ### 链接
