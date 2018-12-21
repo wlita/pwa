@@ -3,7 +3,7 @@
     "name": "这是一个完整名称",
     "icon": [
         {
-            "src": "/pwa/icon.png",
+            "src": "icon.png",
             "type": "image/png",
             "sizes": "48x48"
         }

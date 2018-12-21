@@ -3,39 +3,21 @@
   <title>PWA TEST</title>
   <meta name="viewport" content="width=device-width, user-scalable=no" />
   <meta name="theme-color" content="green">
+
+  <link rel= "apple-touch-icon" href='inco.png' />
+  <link rel= "apple-touch-startup-image" href= "inco.png" />
+  <meta name= "apple-mobile-web-app-title" content= "Todo-PWA" />
+  <meta name= "apple-mobile-web-app-capable" content= "yes" />
+  <meta name= "apple-mobile-web-app-status-bar-style" content= "#fff"/>
+
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="icon" href="img/e.png" type="image/png" />
 </head>
-<style type="text/css">
-  @media all and (display-mode: fullscreen) {
-      body {
-          margin: 0;
-      }
-  }
-
-  @media all and (display-mode: standalone) {
-      body {
-          margin: 1px;
-      }
-  }
-
-  @media all and (display-mode: minimal-ui) {
-      body {
-          margin: 2px;
-      }
-  }
-
-  @media all and (display-mode: browser) {
-      body {
-          margin: 3px;
-      }
-  }
-</style>
 <body>
   <img src="img/pwa-fonts.png">
   <div class="main-text">
-    hello pwa...123
+    hello pwa...
   </div>
 
   <div id="xxx">
@@ -47,21 +29,19 @@
 
   <script type="text/javascript">
 
-    const url = '/pwa/'
+    const url = '/'
     //如果浏览器支持 Service Worker API，在页面 onload 的时候注册位于 /sw.js 的 Service Worker。
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register(url + 'sw.js', {scope: url})
+            navigator.serviceWorker.register(url + 'swTest.js', {scope: url})
                 .then(function (registration) {
-
                     // 注册成功
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 })
                 .catch(function (err) {
-
                     // 注册失败:(
                     console.log('ServiceWorker registration failed: ', err);
-                });
+                })
         });
     }
 
